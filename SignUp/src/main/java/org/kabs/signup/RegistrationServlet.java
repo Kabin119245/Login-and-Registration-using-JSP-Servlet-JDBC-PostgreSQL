@@ -46,6 +46,15 @@ public class RegistrationServlet extends HttpServlet {
             st.setString(2,upwd);
             st.setString(3,uemail);
             st.setString(4,umobile);
+
+            if(uname.isEmpty() || uemail.isEmpty() || upwd.isEmpty() || umobile.isEmpty()) {
+                // Set error message as an attribute in the request
+                request.setAttribute("errorMessage", "Please fill in all the fields");
+                // Forward the request to the registration form
+                request.getRequestDispatcher("registration.jsp").forward(request, response);
+                return; // Exit the method
+            }
+
             int rowCount = st.executeUpdate();
 
             dispatcher = request.getRequestDispatcher("registration.jsp");
@@ -54,7 +63,7 @@ public class RegistrationServlet extends HttpServlet {
                     request.setAttribute("status","success");
 
             } else {
-                request.setAttribute("status","success");
+                request.setAttribute("status","failed");
             }
 
 
