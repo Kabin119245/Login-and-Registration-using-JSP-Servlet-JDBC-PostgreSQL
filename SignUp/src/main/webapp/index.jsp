@@ -42,10 +42,15 @@
 
 </head>
 <body>
+<%
+	response.setHeader("Cache-Control", "no-cache , no-store, must-revalidate");
+%>
 <h1>
 	Hello World
 </h1><br>
 
 <div class="loading-spinner"></div>
+
+<form action = "LogoutServlet"><input type="submit" value="Logout" name="logout"></form>
 </body>
 </html>
